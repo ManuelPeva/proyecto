@@ -5,6 +5,12 @@ const axios = require('axios');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const jwt = require('jsonwebtoken')
+
+//funcion para generar tokens de autenticación
+const generateAuthToken = (userId) => {
+  return jwt.sign({userId}, 'secreto', {expiresIn: '7d'}) //para cambiar por la clave secreta
+}
 
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost/movie_provider', {
